@@ -8,13 +8,14 @@
   <script type="importmap">
     {
       "imports": {
-        "react/jsx-runtime": "https://esm.sh/react/jsx-runtime"
+        "react/": "https://esm.sh/react/",
+        "react-dom/": "https://esm.sh/react-dom/"
       }
     }
   </script>
   <script type="module">
-    import { createElement } from 'https://esm.sh/react'
-    import { createRoot } from 'https://esm.sh/react-dom/client'
+    import { createElement } from 'react'
+    import { createRoot } from 'react-dom/client'
     import Page from './index.js'
     createRoot(document.getElementById('root')).render(createElement(Page))
   </script>

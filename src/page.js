@@ -1,6 +1,8 @@
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime'
 import styled, { css } from 'styled-components'
 
+import license from 'inlined:license.js'
+
 const fonts = css`
   font-family: Inter, Helvetica Neue, system-ui, -apple-system,
     BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans,
@@ -27,16 +29,16 @@ export default function Page() {
   return jsxs(Fragment, {
     children: [
       jsx(Heading, {
-        children: 'ES module in browser',
+        children: 'Shinjuku, Tokyo',
       }),
       jsx(Image, {
-        src: new URL('./assets/shinjuku.jpg', import.meta.url).href,
+        src: new URL('../assets/shinjuku.jpg', import.meta.url).href,
       }),
       jsx(Paragraph, {
         children: jsx('a', {
           href: 'https://commons.wikimedia.org/wiki/File:Skyscrapers_of_Shinjuku_2009_January.jpg',
           target: '_blank',
-          children: 'CC BY-SA 3.0',
+          children: license,
         }),
       }),
     ],

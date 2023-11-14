@@ -3,28 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'strict-dynamic' 'sha384-53Db65a2jP56RP1goHSGBdDuGJYqIgUqLdFtjmS3Jxe5X9cuuVfL16npkGqlGDqR' 'self' https://esm.sh data:; style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; default-src 'self'; connect-src https://esm.sh https://rsms.me; object-src 'none'; base-uri 'none';"
+    />
     <title>ES module in browser</title>
     <link rel="preconnect" href="https://esm.sh/" />
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <script type="importmap">
-      {
-        "imports": {
-          "react": "https://esm.sh/react",
-          "react/": "https://esm.sh/react/",
-          "react-dom": "https://esm.sh/react-dom",
-          "react-dom/": "https://esm.sh/react-dom/",
-          "styled-components": "https://esm.sh/styled-components",
-          "styled-components/": "https://esm.sh/styled-components/"
-        }
-      }
+    <script>
+      const importmap = document.createElement('script')
+      importmap.type = 'importmap'
+      importmap.textContent = JSON.stringify({
+        imports: {
+          react: 'https://esm.sh/react',
+          'react/': 'https://esm.sh/react/',
+          'react-dom': 'https://esm.sh/react-dom',
+          'react-dom/': 'https://esm.sh/react-dom/',
+          'styled-components': 'https://esm.sh/styled-components',
+          'styled-components/': 'https://esm.sh/styled-components/',
+          'inlined:license.js': `data:text/javascript;base64,${btoa(
+            "export default 'CC BY-SA 3.0';",
+          )}`,
+        },
+      })
+      const main = document.createElement('script')
+      main.type = 'module'
+      main.src = './src/main.js'
+      main.defer = true
+      document.currentScript.after(importmap)
+      document.currentScript.after(main)
     </script>
-    <script
-      async
-      src="https://esm.sh/es-module-shims@1.8.2"
-      type="module"
-    ></script>
-    <script defer src="./loader.js" type="module"></script>
   </head>
   <body>
     <div id="root"></div>

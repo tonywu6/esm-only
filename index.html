@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "react/jsx-runtime": "https://esm.sh/react/jsx-runtime"
+      }
+    }
+  </script>
+  <script type="module">
+    import { createElement } from 'https://esm.sh/react'
+    import { createRoot } from 'https://esm.sh/react-dom/client'
+    import Page from './index.js'
+    createRoot(document.getElementById('root')).render(createElement(Page))
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

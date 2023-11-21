@@ -23,6 +23,33 @@ const Image = styled.img`
   }
 `
 
+const RE_ESM_SH =
+  /^https:\/\/esm\.sh\/[^/]+\/(?<identifier>(?:@[^/]+\/)?[^/]+@[^/]+)\/.+$/
+
+/**
+ * @typedef {Object} ResolveStaticOptions
+ * @property {string} name
+ * @property {string | undefined} base
+ * @property {() => string} fallback
+ *
+ * @param {ResolveStaticOptions} options
+ * @returns {string | undefined}
+ */
+function resolveStatic({ name, base, fallback }) {
+  if (base) {
+    const match = RE_ESM_SH.exec(base)
+    if (match) {
+      const { identifier } = match.groups
+      return new URL(name, `https://cdn.esm.sh/${identifier}/`).href
+    }
+  }
+  try {
+    return fallback()
+  } catch (e) {
+    return undefined
+  }
+}
+
 export default function Page() {
   return jsxs(Fragment, {
     children: [
@@ -30,7 +57,12 @@ export default function Page() {
         children: 'Shinjuku, Tokyo',
       }),
       jsx(Image, {
-        src: new URL('../assets/shinjuku.jpg', import.meta.url).href,
+        src: resolveStatic({
+          name: 'assets/shinjuku.jpg',
+          base: import.meta.url,
+          fallback: () =>
+            new URL('../assets/shinjuku.jpg', import.meta.url).href,
+        }),
       }),
       jsx(Paragraph, {
         children: jsx('a', {

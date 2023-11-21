@@ -21,5 +21,8 @@
   },
   "scripts": {
     "build": "esbuild --target=esnext --format=esm --bundle --packages=external src/main.js"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

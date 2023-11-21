@@ -1,3 +1,25 @@
 {
-  "type": "module"
+  "name": "@tonywu6_/esm-exercise",
+  "version": "0.0.0",
+  "type": "module",
+  "module": "src/main.js",
+  "files": [
+    "src",
+    "index.html",
+    "assets"
+  ],
+  "exports": {
+    ".": "./src/main.js"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.7"
+  },
+  "scripts": {
+    "build": "esbuild --target=esnext --format=esm --bundle --packages=external src/main.js"
+  }
 }

@@ -1,8 +1,6 @@
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime'
 import styled, { css } from 'styled-components'
 
-import license from 'inlined:license.js'
-
 const fonts = css`
   font-family: Inter, Helvetica Neue, system-ui, -apple-system,
     BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans,
@@ -38,7 +36,7 @@ export default function Page() {
         children: jsx('a', {
           href: 'https://commons.wikimedia.org/wiki/File:Skyscrapers_of_Shinjuku_2009_January.jpg',
           target: '_blank',
-          children: license,
+          children: 'CC BY-SA 3.0',
         }),
       }),
     ],

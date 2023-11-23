@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom'
 const cspDirectives = [
   "style-src 'self' 'unsafe-inline' https://rsms.me/",
   "font-src 'self' https://rsms.me/",
-  "img-src 'self' https://cdn.esm.sh https://esm.sh",
+  "img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org",
   'connect-src https://cdn.esm.sh https://esm.sh https://rsms.me',
   "default-src 'self'",
   "object-src 'none'",

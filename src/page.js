@@ -63,6 +63,8 @@ export default function Page() {
           fallback: () =>
             new URL('../assets/shinjuku.jpg', import.meta.url).href,
         }),
+        width: 3400,
+        height: 1858,
       }),
       jsx(Paragraph, {
         children: jsx('a', {
@@ -70,6 +72,16 @@ export default function Page() {
           target: '_blank',
           children: 'CC BY-SA 3.0',
         }),
+      }),
+      jsxs(Paragraph, {
+        children: [
+          'Powered by ',
+          jsx('a', {
+            href: 'https://esm.sh',
+            target: '_blank',
+            children: 'esm.sh',
+          }),
+        ],
       }),
     ],
   })

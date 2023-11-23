@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="script-src 'strict-dynamic' 'sha384-ZDAmQqblh/weNyiKXVHO8Ezs7aq0O+wiMgZIYcNBWp0zk4nBjjX700Hed34YDft2' 'self' https://esm.sh data:; style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh; connect-src https://cdn.esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none';"
+      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-ZDAmQqblh/weNyiKXVHO8Ezs7aq0O+wiMgZIYcNBWp0zk4nBjjX700Hed34YDft2' 'self' https://esm.sh data:"
     />
     <title>ES module in browser</title>
     <link rel="preconnect" href="https://esm.sh/" />
@@ -33,6 +33,6 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">Loading ...</div>
   </body>
 </html>

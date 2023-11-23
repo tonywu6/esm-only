@@ -83,6 +83,12 @@ export default function Page() {
           }),
         ],
       }),
+      jsx(Paragraph, {
+        children: jsx('a', {
+          href: 'https://github.com/tonywu6/esm-only/blob/main/src/page.js',
+          children: 'Source code for this page',
+        }),
+      }),
     ],
   })
 }

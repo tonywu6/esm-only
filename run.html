@@ -6,18 +6,12 @@
     <title>esm.sh run demo</title>
     <meta
       http-equiv="Content-Security-Policy"
-      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-vMCshJdiwW4WBOU+yKmusI3XqfzWSEWCp1+KbwN+7IvR2nMdMEbc/AmqByuDeAEe' 'sha384-gmEEJ2zHJFxs7/XGlhvDlttnElag81dZhIuGy6yE19KcQB/ouaRo6MMYjI3aVeLP' 'self' https://esm.sh data:"
+      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-Iye/uYVvmfUwtPFTLPJWsj2cTvddlz2qjA1pBtv1SsjkKbFFji7jSpRJtR6p9Ei3' 'sha384-gmEEJ2zHJFxs7/XGlhvDlttnElag81dZhIuGy6yE19KcQB/ouaRo6MMYjI3aVeLP' 'self' https://esm.sh data:"
     />
     <link rel="preconnect" href="https://esm.sh/" />
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <script type="text/javascript">
-      window.addEventListener('error', (event) => {
-        const errors = document.getElementById('errors')
-        errors.textContent = `Uncaught:\n${event.error.stack}`
-        errors.style.display = 'block'
-      })
-
       const importmap = document.createElement('script')
       importmap.type = 'importmap'
       importmap.textContent = JSON.stringify({

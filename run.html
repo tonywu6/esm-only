@@ -6,12 +6,18 @@
     <title>esm.sh run demo</title>
     <meta
       http-equiv="Content-Security-Policy"
-      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-5KqCJUSF8E2RMahmub5i5EKPKcn5uzHKe0Pr+QpB6QPI6mC7f94imJGdP5mdEuPs' 'sha384-gmEEJ2zHJFxs7/XGlhvDlttnElag81dZhIuGy6yE19KcQB/ouaRo6MMYjI3aVeLP' 'self' https://esm.sh data:"
+      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-vMCshJdiwW4WBOU+yKmusI3XqfzWSEWCp1+KbwN+7IvR2nMdMEbc/AmqByuDeAEe' 'sha384-gmEEJ2zHJFxs7/XGlhvDlttnElag81dZhIuGy6yE19KcQB/ouaRo6MMYjI3aVeLP' 'self' https://esm.sh data:"
     />
     <link rel="preconnect" href="https://esm.sh/" />
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <script type="text/javascript">
+      window.addEventListener('error', (event) => {
+        const errors = document.getElementById('errors')
+        errors.textContent = `Uncaught:\n${event.error.stack}`
+        errors.style.display = 'block'
+      })
+
       const importmap = document.createElement('script')
       importmap.type = 'importmap'
       importmap.textContent = JSON.stringify({
@@ -35,13 +41,19 @@
       loader.src = 'https://esm.sh/run'
       loader.defer = true
 
+      const errors = document.createElement('script')
+      errors.src = './src/errors.js'
+
+      document.currentScript.after(errors)
       document.currentScript.after(importmap)
       document.currentScript.after(loader)
     </script>
   </head>
 
   <body>
-    <div id="root"><p>Loading ...</p></div>
+    <div id="root">
+      <p id="fallback">Loading ...</p>
+    </div>
     <script type="text/babel">
       import { createRoot } from 'react-dom/client'
       import styled, { css } from 'styled-components'
@@ -114,5 +126,9 @@
 
       createRoot(document.getElementById('root')).render(<App />)
     </script>
+    <pre
+      style="color: #f04654; font-weight: 600; display: none"
+      id="errors"
+    ></pre>
   </body>
 </html>

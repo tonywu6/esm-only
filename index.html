@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-QJwUpS88Mso+piBrArG994+Wadfl/zkhsRT09HVbBVM8wIzpCdTdqSaFDOe6xlfE' 'self' https://esm.sh data:"
+      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-fn/V1qceCV/22LTHT1Zi11JU6u7JLPrQzdDelr84XQlamw6OxKwvg3UHWIzbi8Nn' 'self' https://esm.sh data:"
     />
     <title>ES module in browser</title>
     <link rel="preconnect" href="https://esm.sh/" />
@@ -26,15 +26,27 @@
           ]),
         ),
       })
+
       const main = document.createElement('script')
       main.type = 'module'
       main.src = './src/main.js'
       main.defer = true
+
+      const errors = document.createElement('script')
+      errors.src = './src/errors.js'
+
+      document.currentScript.after(errors)
       document.currentScript.after(importmap)
       document.currentScript.after(main)
     </script>
   </head>
   <body>
-    <div id="root">Loading ...</div>
+    <div id="root">
+      <p id="fallback">Loading ...</p>
+    </div>
+    <pre
+      style="color: #f04654; font-weight: 600; display: none"
+      id="errors"
+    ></pre>
   </body>
 </html>

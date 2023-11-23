@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-ZDAmQqblh/weNyiKXVHO8Ezs7aq0O+wiMgZIYcNBWp0zk4nBjjX700Hed34YDft2' 'self' https://esm.sh data:"
+      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-QJwUpS88Mso+piBrArG994+Wadfl/zkhsRT09HVbBVM8wIzpCdTdqSaFDOe6xlfE' 'self' https://esm.sh data:"
     />
     <title>ES module in browser</title>
     <link rel="preconnect" href="https://esm.sh/" />
@@ -17,11 +17,13 @@
       importmap.textContent = JSON.stringify({
         imports: Object.fromEntries(
           [
-            'react',
-            'react/jsx-runtime',
-            'react-dom/client',
-            'styled-components',
-          ].map((pkg) => [pkg, `https://esm.sh/${pkg}`]),
+            ['react', '18.2'],
+            ['react-dom', '18.2'],
+            ['styled-components', '6.1'],
+          ].flatMap(([name, version]) => [
+            [name, `https://esm.sh/${name}@${version}`],
+            [`${name}/`, `https://esm.sh/${name}@${version}/`],
+          ]),
         ),
       })
       const main = document.createElement('script')

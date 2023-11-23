@@ -6,7 +6,7 @@
     <title>esm.sh run demo</title>
     <meta
       http-equiv="Content-Security-Policy"
-      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-DQW8zrmFneSMurt9zWQfr3S8jjIlse9SGyWdd2OZbTTNzeaudphHQPsevhyUXEXJ' 'sha384-gmEEJ2zHJFxs7/XGlhvDlttnElag81dZhIuGy6yE19KcQB/ouaRo6MMYjI3aVeLP' 'self' https://esm.sh data:"
+      content="style-src 'self' 'unsafe-inline' https://rsms.me/; font-src 'self' https://rsms.me/; img-src 'self' https://cdn.esm.sh https://esm.sh https://upload.wikimedia.org; connect-src https://cdn.esm.sh https://esm.sh https://rsms.me; default-src 'self'; object-src 'none'; base-uri 'none'; script-src 'strict-dynamic' 'sha384-5KqCJUSF8E2RMahmub5i5EKPKcn5uzHKe0Pr+QpB6QPI6mC7f94imJGdP5mdEuPs' 'sha384-gmEEJ2zHJFxs7/XGlhvDlttnElag81dZhIuGy6yE19KcQB/ouaRo6MMYjI3aVeLP' 'self' https://esm.sh data:"
     />
     <link rel="preconnect" href="https://esm.sh/" />
     <link rel="preconnect" href="https://rsms.me/" />
@@ -18,9 +18,13 @@
         imports: {
           '@jsxImportSource': 'https://esm.sh/react',
           ...Object.fromEntries(
-            ['react', 'react-dom/client', 'styled-components'].map((pkg) => [
-              pkg,
-              `https://esm.sh/${pkg}`,
+            [
+              ['react', '18.2'],
+              ['react-dom', '18.2'],
+              ['styled-components', '6.1'],
+            ].flatMap(([name, version]) => [
+              [name, `https://esm.sh/${name}@${version}`],
+              [`${name}/`, `https://esm.sh/${name}@${version}/`],
             ]),
           ),
         },
